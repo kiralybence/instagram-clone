@@ -42,16 +42,16 @@ const logout = () => {
                         <!-- Left -->
                         <div class="flex">
                             <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
+                            <div class="shrink-0 flex items-center" style="font-size: 1.2rem;">
                                 <Link :href="route('home')">
-                                    Instagram
+                                    <b>Instagram</b>
                                 </Link>
                             </div>
                         </div>
 
                         <!-- Right -->
                         <div class="flex">
-                            <!-- Logo -->
+                            <!-- Icons -->
                             <div class="shrink-0 flex items-center" style="font-size: 1.5rem;">
                                 <!-- Notifications -->
                                 <Link :href="route('home')">
