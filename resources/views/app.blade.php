@@ -12,6 +12,9 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
+        <!-- TODO: move to webpack -->
+        <link rel="stylesheet" href="{{ mix('css/all.css') }}">
+
         <!-- Scripts -->
         @routes
         <script src="{{ mix('js/app.js') }}" defer></script>

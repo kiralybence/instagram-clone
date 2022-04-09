@@ -54,7 +54,7 @@ const logout = () => {
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('home')">
-                                    Instagram
+                                    <i class="fa-regular fa-heart"></i>
                                 </Link>
                             </div>
                         </div>
