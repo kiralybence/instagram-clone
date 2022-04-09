@@ -52,9 +52,15 @@ const logout = () => {
                         <!-- Right -->
                         <div class="flex">
                             <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
+                            <div class="shrink-0 flex items-center" style="font-size: 1.5rem;">
+                                <!-- Notifications -->
                                 <Link :href="route('home')">
-                                    <i class="fa-regular fa-heart"></i>
+                                    <i class="fa-regular fa-heart ml-2"></i>
+                                </Link>
+
+                                <!-- DMs -->
+                                <Link :href="route('home')">
+                                    <i class="fa-regular fa-paper-plane ml-2"></i>
                                 </Link>
                             </div>
                         </div>
