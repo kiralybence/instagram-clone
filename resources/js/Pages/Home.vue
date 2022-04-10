@@ -64,8 +64,8 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             </div>
 
             <!-- Image -->
-            <div>
-                <img :src="post.image.url">
+            <div class="w-full">
+                <img :src="post.image.url" class="w-full">
             </div>
 
             <!-- Below image -->
