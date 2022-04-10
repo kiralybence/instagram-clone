@@ -51,11 +51,13 @@ import AppLayout from '@/Layouts/AppLayout.vue';
         <div>
             <!-- Uploader -->
             <div class="flex align-middle justify-between p-3">
+                <!-- Left -->
                 <div class="flex">
                     <img src="https://via.placeholder.com/150x150" class="rounded-full" style="width: 30px; height: 30px;">
                     <span class="ml-3">username</span>
                 </div>
 
+                <!-- Right -->
                 <div class="flex">
                     ...
                 </div>
@@ -68,6 +70,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 
             <!-- Actions -->
             <div class="flex align-middle justify-between p-3" style="font-size: 1.5rem;">
+                <!-- Left -->
                 <div class="flex">
                     <!-- Like -->
                     <i class="fa-regular fa-heart mr-3"></i>
@@ -79,6 +82,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                     <i class="fa-regular fa-paper-plane mr-3"></i>
                 </div>
 
+                <!-- Right -->
                 <div class="flex">
                     <!-- Save -->
                     <i class="fa-regular fa-bookmark ml-3"></i>
