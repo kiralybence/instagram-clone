@@ -11,7 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js').vue()
+mix
+    .js('resources/js/app.js', 'public/js').vue()
     .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts')
     .copy('node_modules/@fortawesome/fontawesome-free/css/all.css', 'public/css/all.css')
     .postCss('resources/css/app.css', 'public/css', [
@@ -20,7 +21,8 @@ mix.js('resources/js/app.js', 'public/js').vue()
     ])
     .alias({
         '@': 'resources/js',
-    });
+    })
+    .sourceMaps();
 
 if (mix.inProduction()) {
     mix.version();
