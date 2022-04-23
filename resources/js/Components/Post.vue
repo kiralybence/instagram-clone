@@ -27,7 +27,7 @@
                 <div class="flex">
                     <!-- Like -->
                     <i
-                        class="fa-heart mr-3"
+                        class="fa-heart mr-3 cursor-pointer"
                         :class="{
                             'fa-regular': !post.is_liked,
                             'fa-solid': post.is_liked,
@@ -36,16 +36,16 @@
                     ></i>
 
                     <!-- Comment -->
-                    <i class="fa-regular fa-comment mr-3"></i>
+                    <i class="fa-regular fa-comment mr-3 cursor-pointer"></i>
 
                     <!-- Send -->
-                    <i class="fa-regular fa-paper-plane mr-3"></i>
+                    <i class="fa-regular fa-paper-plane mr-3 cursor-pointer"></i>
                 </div>
 
                 <!-- Right -->
                 <div class="flex">
                     <!-- Save -->
-                    <i class="fa-regular fa-bookmark ml-3"></i>
+                    <i class="fa-regular fa-bookmark ml-3 cursor-pointer"></i>
                 </div>
             </div>
 
