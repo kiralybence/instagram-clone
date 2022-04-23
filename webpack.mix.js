@@ -22,7 +22,8 @@ mix
     .alias({
         '@': 'resources/js',
     })
-    .sourceMaps();
+    .sourceMaps()
+    .disableNotifications();
 
 if (mix.inProduction()) {
     mix.version();
