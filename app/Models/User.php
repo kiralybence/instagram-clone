@@ -70,4 +70,9 @@ class User extends Authenticatable
     {
         return $this->morphedByMany(Post::class, 'likeable');
     }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
