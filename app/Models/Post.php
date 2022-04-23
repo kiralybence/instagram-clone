@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
@@ -26,6 +27,11 @@ class Post extends Model
     public function image(): MorphOne
     {
         return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function likedByUsers(): MorphToMany
+    {
+        return $this->morphToMany(User::class, 'likeable');
     }
 
     public function getCreatedAtAgoAttribute(): string
