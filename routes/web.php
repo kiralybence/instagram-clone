@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +20,19 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    // TODO: fix API key issue, and move these to api.php
+    Route::group([
+        'prefix' => 'api',
+        'as' => 'api.',
+    ], function () {
+        Route::group([
+            'controller' => PostController::class,
+            'prefix' => 'posts',
+            'as' => 'posts.',
+        ], function () {
+            Route::post('/{post}/like', 'like')->name('like');
+        });
+    });
+
     Route::get('/', [HomeController::class, 'index'])->name('home');
 });

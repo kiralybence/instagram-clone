@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,11 +19,5 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::group([
-        'controller' => PostController::class,
-        'prefix' => 'posts',
-        'as' => 'posts.'
-    ], function () {
-        Route::post('/{post}/like', 'like')->name('like');
-    });
+    //
 });
