@@ -16,7 +16,7 @@
 
         <!-- Image -->
         <div class="w-full">
-            <img :src="post.image.url" class="w-full">
+            <img :src="post.image.url" class="w-full" @dblclick="toggleLikeStatus">
         </div>
 
         <!-- Below image -->
@@ -26,7 +26,14 @@
                 <!-- Left -->
                 <div class="flex">
                     <!-- Like -->
-                    <i class="fa-regular fa-heart mr-3"></i>
+                    <i
+                        class="fa-heart mr-3"
+                        :class="{
+                            'fa-regular': !post.is_liked,
+                            'fa-solid': post.is_liked,
+                        }"
+                        @click="toggleLikeStatus"
+                    ></i>
 
                     <!-- Comment -->
                     <i class="fa-regular fa-comment mr-3"></i>
@@ -44,7 +51,7 @@
 
             <!-- Info -->
             <div class="mt-3">
-                <b>1234 likes</b><br>
+                <b>{{ post.like_count }} {{ post.like_count !== 1 ? 'likes' : 'like' }}</b><br>
                 <b>{{ post.user.name }}</b> {{ post.description }}<br>
                 <span style="color: darkgray;">{{ post.created_at_ago }}</span>
             </div>
@@ -57,6 +64,17 @@ export default {
     name: "Post",
     props: {
         post: Object,
+    },
+    methods: {
+        async toggleLikeStatus() {
+            await axios.post(`/api/posts/${this.post.id}/like`, {
+                status: !this.post.is_liked,
+            }).then(() => {
+                this.post.is_liked = !this.post.is_liked;
+                this.post.like_count += this.post.is_liked ? 1 : -1;
+                // TODO: if coming from a double click event, play a heart animation on top of the image
+            });
+        },
     },
 }
 </script>
