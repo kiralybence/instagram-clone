@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,13 @@ Route::middleware([
         'as' => 'posts.',
     ], function () {
         Route::post('/{post}/like', 'like')->name('like');
+    });
+
+    Route::group([
+        'controller' => CommentController::class,
+        'prefix' => 'comments',
+        'as' => 'comments.',
+    ], function () {
+        Route::post('/{comment}/like', 'like')->name('like');
     });
 });

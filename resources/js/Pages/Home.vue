@@ -1,5 +1,5 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
+import AppLayout from '../Layouts/AppLayout.vue';
 import Post from "../Components/Post";
 import StoryBadge from "../Components/StoryBadge";
 </script>

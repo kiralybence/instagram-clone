@@ -1,3 +1,7 @@
+<script setup>
+import { Link } from '@inertiajs/inertia-vue3';
+</script>
+
 <template>
     <div class="mb-3">
         <!-- Uploader -->
@@ -36,7 +40,11 @@
                     ></i>
 
                     <!-- Comment -->
-                    <i class="fa-regular fa-comment mr-3 cursor-pointer"></i>
+                    <!-- TODO: use <Link> instead of $inertia.visit, temporarily solution because of CSS -->
+                    <i
+                        class="fa-regular fa-comment mr-3 cursor-pointer"
+                        @click="$inertia.visit(`/posts/${post.id}/comments`)"
+                    ></i>
 
                     <!-- Send -->
                     <i class="fa-regular fa-paper-plane mr-3 cursor-pointer"></i>
