@@ -10,7 +10,10 @@ import { Link } from '@inertiajs/inertia-vue3';
         <div class="flex justify-between items-center px-3" style="height: 50px;">
             <!-- Left -->
             <div style="font-size: 1.5rem;">
-                <i class="fa-solid fa-angle-left"></i>
+                <!-- TODO: make route().back() working -->
+                <Link href="#">
+                    <i class="fa-solid fa-angle-left"></i>
+                </Link>
             </div>
 
             <!-- Center -->
@@ -19,14 +22,11 @@ import { Link } from '@inertiajs/inertia-vue3';
             </div>
 
             <!-- Right -->
-            <div class="flex">
-                <!-- Icons -->
-                <div class="shrink-0 flex items-center" style="font-size: 1.5rem;">
-                    <!-- DMs -->
-                    <Link href="#">
-                        <i class="fa-regular fa-paper-plane mr-2"></i>
-                    </Link>
-                </div>
+            <div class="flex items-center" style="font-size: 1.5rem;">
+                <!-- Send in DMs -->
+                <Link href="#">
+                    <i class="fa-regular fa-paper-plane mr-2"></i>
+                </Link>
             </div>
         </div>
 
