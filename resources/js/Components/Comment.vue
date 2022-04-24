@@ -1,8 +1,12 @@
+<script setup>
+import { Link } from '@inertiajs/inertia-vue3'
+</script>
+
 <template>
     <div
         class="flex p-3"
         :class="{
-            'ml-10': comment.is_reply
+            'ml-10': comment.is_reply,
         }"
     >
         <!-- Left -->
@@ -12,6 +16,12 @@
         <div class="pl-3 w-full">
             <span class="mr-1">
                 <b>{{ comment.user.name }}</b>
+            </span>
+
+            <span v-if="comment.is_reply" class="text-blue-100">
+                <Link href="#">
+                    @{{ comment.parent.user.name }}
+                </Link>
             </span>
 
             {{ comment.content }}

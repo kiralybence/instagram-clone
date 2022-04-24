@@ -16,6 +16,8 @@ class CommentController extends Controller
             'comments.user',
             'comments.replies',
             'comments.replies.user',
+            'comments.parent',
+            'comments.parent.user',
         ]);
 
         return Inertia::render('Comments/Index', [

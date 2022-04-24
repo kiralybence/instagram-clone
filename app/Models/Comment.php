@@ -65,6 +65,13 @@ class Comment extends Model
 
     public function replies(): HasMany
     {
-        return $this->hasMany(Comment::class, 'parent_id');
+        return $this->hasMany(Comment::class, 'parent_id')
+            // This is the only way I could get recursive relationships to work with JSON
+            ->with([
+                'parent',
+                'parent.user',
+                'replies',
+                'replies.user',
+            ]);
     }
 }
