@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('likeables', function (Blueprint $table) {
-            $table->foreignIdFor(User::class)->references('id')->on('users');
+            $table->foreignIdFor(User::class)->constrained();
             $table->string('likeable_type')->index();
             $table->unsignedBigInteger('likeable_id')->index();
         });
