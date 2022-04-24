@@ -50,7 +50,7 @@ import { Link } from '@inertiajs/inertia-vue3';
             </div>
 
             <!-- Right -->
-            <div class="align-middle ml-3">
+            <div class="ml-3">
                 <!-- Like -->
                 <i
                     class="fa-heart cursor-pointer"

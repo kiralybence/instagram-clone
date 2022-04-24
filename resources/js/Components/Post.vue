@@ -5,7 +5,7 @@ import { Link } from '@inertiajs/inertia-vue3';
 <template>
     <div class="mb-3">
         <!-- Uploader -->
-        <div class="flex align-middle justify-between p-3">
+        <div class="flex justify-between p-3">
             <!-- Left -->
             <div class="flex">
                 <img :src="post.user.profile_photo_url" class="rounded-full" style="width: 30px; height: 30px;">
@@ -26,7 +26,7 @@ import { Link } from '@inertiajs/inertia-vue3';
         <!-- Below image -->
         <div class="p-3">
             <!-- Actions -->
-            <div class="flex align-middle justify-between" style="font-size: 1.5rem;">
+            <div class="flex justify-between" style="font-size: 1.5rem;">
                 <!-- Left -->
                 <div class="flex">
                     <!-- Like -->
