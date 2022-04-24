@@ -8,7 +8,7 @@ import Comment from "../../Components/Comment";
         <hr style="border-top: 1px solid #474747;">
 
         <!-- Comments -->
-        <Comment v-for="comment in post.comments" :comment="comment" />
+        <Comment v-for="comment in post.comments.filter(comment => !comment.is_reply)" :comment="comment" />
     </AppLayout>
 </template>
 

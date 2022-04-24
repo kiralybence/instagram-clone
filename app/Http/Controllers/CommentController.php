@@ -10,7 +10,13 @@ class CommentController extends Controller
 {
     public function index(Request $request, Post $post)
     {
-        $post->load(['user', 'comments', 'comments.user']);
+        $post->load([
+            'user',
+            'comments',
+            'comments.user',
+            'comments.replies',
+            'comments.replies.user',
+        ]);
 
         return Inertia::render('Comments/Index', [
             'post' => $post,

@@ -1,30 +1,33 @@
 <template>
-    <div class="flex justify-between p-3">
-        <div class="flex">
-            <!-- Left -->
-            <img :src="comment.user.profile_photo_url" class="rounded-full" style="width: 30px; height: 30px;">
+    <div
+        class="flex p-3"
+        :class="{
+            'ml-10': comment.is_reply
+        }"
+    >
+        <!-- Left -->
+        <img :src="comment.user.profile_photo_url" class="rounded-full" style="width: 30px; height: 30px;">
 
-            <!-- Center -->
-            <div class="pl-3">
-                <span class="mr-1">
-                    <b>{{ comment.user.name }}</b>
+        <!-- Center -->
+        <div class="pl-3 w-full">
+            <span class="mr-1">
+                <b>{{ comment.user.name }}</b>
+            </span>
+
+            {{ comment.content }}
+
+            <div style="color: darkgray;">
+                <span class="mr-5">
+                    {{ comment.created_at_ago }}
                 </span>
 
-                {{ comment.content }}
+                <span class="mr-5">
+                    {{ comment.like_count }} {{ comment.like_count !== 1 ? 'likes' : 'like' }}
+                </span>
 
-                <div style="color: darkgray;">
-                    <span class="mr-5">
-                        {{ comment.created_at_ago }}
-                    </span>
-
-                    <span class="mr-5">
-                        {{ comment.like_count }} {{ comment.like_count !== 1 ? 'likes' : 'like' }}
-                    </span>
-
-                    <span class="mr-5">
-                        Reply
-                    </span>
-                </div>
+                <span class="mr-5">
+                    Reply
+                </span>
             </div>
         </div>
 
@@ -41,6 +44,9 @@
             ></i>
         </div>
     </div>
+
+    <!-- Replies -->
+    <Comment v-for="comment in comment.replies" :comment="comment" />
 </template>
 
 <script>
