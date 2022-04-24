@@ -2,23 +2,22 @@
 
 namespace App\Models;
 
+use App\Traits\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comment extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use Likeable;
 
     protected $appends = [
         'created_at_ago',
         'created_at_ago_short',
-        'is_liked',
-        'like_count',
         'is_reply',
     ];
 
@@ -32,11 +31,6 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function likedByUsers(): MorphToMany
-    {
-        return $this->morphToMany(User::class, 'likeable');
-    }
-
     public function getCreatedAtAgoAttribute(): string
     {
         return $this->created_at->diffForHumans();
@@ -45,18 +39,6 @@ class Comment extends Model
     public function getCreatedAtAgoShortAttribute(): string
     {
         return $this->created_at->shortAbsoluteDiffForHumans();
-    }
-
-    public function getIsLikedAttribute(): bool
-    {
-        return $this->likedByUsers()
-            ->where('id', auth()->id())
-            ->exists();
-    }
-
-    public function getLikeCountAttribute(): int
-    {
-        return $this->likedByUsers()->count();
     }
 
     public function getIsReplyAttribute(): bool

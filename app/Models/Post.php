@@ -2,25 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Traits\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use Likeable;
 
     protected $appends = [
         'created_at_ago',
         'created_at_ago_short',
-        'is_liked',
-        'like_count',
     ];
 
     public function user(): BelongsTo
@@ -33,11 +31,6 @@ class Post extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
-    public function likedByUsers(): MorphToMany
-    {
-        return $this->morphToMany(User::class, 'likeable');
-    }
-
     public function getCreatedAtAgoAttribute(): string
     {
         return $this->created_at->diffForHumans();
@@ -46,18 +39,6 @@ class Post extends Model
     public function getCreatedAtAgoShortAttribute(): string
     {
         return $this->created_at->shortAbsoluteDiffForHumans();
-    }
-
-    public function getIsLikedAttribute(): bool
-    {
-        return $this->likedByUsers()
-            ->where('id', auth()->id())
-            ->exists();
-    }
-
-    public function getLikeCountAttribute(): int
-    {
-        return $this->likedByUsers()->count();
     }
 
     public function comments(): HasMany
