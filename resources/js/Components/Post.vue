@@ -55,7 +55,7 @@
 
             <!-- Info -->
             <div class="mt-3">
-                <b>{{ post.like_count }} {{ post.like_count !== 1 ? 'likes' : 'like' }}</b><br>
+                <b>{{ post.like_count }} {{ post.like_count !== 1 ? 'likes' : 'like' }}</b><br> <!-- TODO: maybe display "Be the first one to like" if there are 0 likes -->
                 <b>{{ post.user.name }}</b> {{ post.description }}<br>
                 <span style="color: darkgray;">{{ post.created_at_ago }}</span>
             </div>
