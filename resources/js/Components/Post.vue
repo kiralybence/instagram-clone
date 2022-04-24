@@ -36,7 +36,7 @@
                     ></i>
 
                     <!-- Comment -->
-                    <!-- TODO: use <Link> instead of $inertia.visit, temporarily solution because of CSS -->
+                    <!-- TODO: use <Link> instead of $inertia.visit, temporary solution because of CSS -->
                     <i
                         class="fa-regular fa-comment mr-3 cursor-pointer"
                         @click="$inertia.visit(`/posts/${post.id}/comments`)"
