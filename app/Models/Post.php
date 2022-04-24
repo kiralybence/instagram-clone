@@ -18,6 +18,7 @@ class Post extends Model
 
     protected $appends = [
         'created_at_ago',
+        'created_at_ago_short',
         'is_liked',
         'like_count',
     ];
@@ -40,6 +41,11 @@ class Post extends Model
     public function getCreatedAtAgoAttribute(): string
     {
         return $this->created_at->diffForHumans();
+    }
+
+    public function getCreatedAtAgoShortAttribute(): string
+    {
+        return $this->created_at->shortAbsoluteDiffForHumans();
     }
 
     public function getIsLikedAttribute(): bool

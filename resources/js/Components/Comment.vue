@@ -36,7 +36,7 @@ import { Link } from '@inertiajs/inertia-vue3';
 
                 <div style="color: darkgray;">
                     <span class="mr-5">
-                        {{ comment.created_at_ago }}
+                        {{ comment.created_at_ago_short }}
                     </span>
 
                     <span class="mr-5">

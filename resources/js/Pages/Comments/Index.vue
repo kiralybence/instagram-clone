@@ -45,7 +45,7 @@ import { Link } from '@inertiajs/inertia-vue3';
 
                 <div style="color: darkgray;">
                     <span class="mr-5">
-                        {{ post.created_at_ago }}
+                        {{ post.created_at_ago_short }}
                     </span>
                 </div>
             </div>
