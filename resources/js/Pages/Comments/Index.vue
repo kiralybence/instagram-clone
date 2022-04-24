@@ -4,7 +4,7 @@ import Comment from "../../Components/Comment";
 </script>
 
 <template>
-    <AppLayout title="Comments">
+    <AppLayout title="Comments" :display-navbar="false">
         <hr style="border-top: 1px solid #474747;">
 
         <!-- Comments -->

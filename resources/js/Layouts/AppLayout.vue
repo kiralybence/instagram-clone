@@ -5,6 +5,10 @@ import JetBanner from '@/Jetstream/Banner.vue';
 
 defineProps({
     title: String,
+    displayNavbar: {
+        type: Boolean,
+        default: true,
+    },
 });
 
 const logout = () => {
@@ -19,7 +23,7 @@ const logout = () => {
         <JetBanner />
 
         <div class="min-h-screen bg-black text-white">
-            <nav>
+            <nav v-if="displayNavbar">
                 <!-- Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
