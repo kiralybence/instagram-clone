@@ -3,11 +3,13 @@ import { Link } from '@inertiajs/inertia-vue3';
 </script>
 
 <template>
+    <!-- Main container -->
     <div
         :class="{
             'mb-3': !comment.is_reply,
         }"
     >
+        <!-- Parent comment container -->
         <div
             class="flex p-3"
             :class="{
@@ -61,15 +63,25 @@ import { Link } from '@inertiajs/inertia-vue3';
             </div>
         </div>
 
+        <!-- Show replies button -->
         <div
             class="ml-14"
+            style="color: darkgray;"
             v-if="!showReplies && !comment.is_reply && comment.replies.length > 0"
         >
             <span
-                class="cursor-pointer"
+                class="cursor-pointer flex items-center w-fit"
                 @click="showReplies = true"
             >
-                View {{ comment.replies.length }} more {{ comment.replies.length !== 1 ? 'replies' : 'reply' }}
+                <hr
+                    class="mr-2"
+                    style="
+                        width: 15px;
+                        border-color: #3f3f3f;
+                    "
+                >
+
+                <b>View {{ comment.replies.length }} more {{ comment.replies.length !== 1 ? 'replies' : 'reply' }}</b>
             </span>
         </div>
 
@@ -79,6 +91,28 @@ import { Link } from '@inertiajs/inertia-vue3';
             :comment="comment"
             v-if="showReplies"
         />
+
+        <!-- Hide replies button -->
+        <div
+            class="ml-14"
+            style="color: darkgray;"
+            v-if="showReplies && !comment.is_reply && comment.replies.length > 0"
+        >
+            <span
+                class="cursor-pointer flex items-center w-fit"
+                @click="showReplies = false"
+            >
+                <hr
+                    class="mr-2"
+                    style="
+                        width: 15px;
+                        border-color: #3f3f3f;
+                    "
+                >
+
+                <b>Hide replies</b>
+            </span>
+        </div>
     </div>
 </template>
 
