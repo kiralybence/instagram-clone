@@ -1,7 +1,3 @@
-<script setup>
-import { Link } from '@inertiajs/inertia-vue3';
-</script>
-
 <template>
     <div class="mb-3">
         <!-- Uploader -->
