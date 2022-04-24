@@ -1,10 +1,37 @@
 <script setup>
 import AppLayout from '../../Layouts/AppLayout.vue';
 import Comment from "../../Components/Comment";
+import { Link } from '@inertiajs/inertia-vue3';
 </script>
 
 <template>
     <AppLayout title="Comments" :display-navbar="false">
+        <!-- Header -->
+        <div class="flex justify-between items-center px-3" style="height: 50px;">
+            <!-- Left -->
+            <div style="font-size: 1.5rem;">
+                <i class="fa-solid fa-angle-left"></i>
+            </div>
+
+            <!-- Center -->
+            <div style="font-size: 1.2rem;">
+                Comments
+            </div>
+
+            <!-- Right -->
+            <div class="flex">
+                <!-- Icons -->
+                <div class="shrink-0 flex items-center" style="font-size: 1.5rem;">
+                    <!-- DMs -->
+                    <Link href="#">
+                        <i class="fa-regular fa-paper-plane mr-2"></i>
+                    </Link>
+                </div>
+            </div>
+        </div>
+
+        <hr style="border-top: 1px solid #474747;">
+
         <!-- Post description -->
         <div class="flex p-3">
             <!-- Left -->
