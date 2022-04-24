@@ -39,7 +39,10 @@ import { Link } from '@inertiajs/inertia-vue3';
                         {{ comment.created_at_ago_short }}
                     </span>
 
-                    <span class="mr-5">
+                    <span
+                        class="mr-5"
+                        v-if="comment.like_count > 0"
+                    >
                         {{ comment.like_count }} {{ comment.like_count !== 1 ? 'likes' : 'like' }}
                     </span>
 
