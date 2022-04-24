@@ -42,12 +42,12 @@ const logout = () => {
                             <!-- Icons -->
                             <div class="shrink-0 flex items-center" style="font-size: 1.5rem;">
                                 <!-- Notifications -->
-                                <Link :href="route('home')">
+                                <Link href="#">
                                     <i class="fa-regular fa-heart ml-2"></i>
                                 </Link>
 
                                 <!-- DMs -->
-                                <Link :href="route('home')">
+                                <Link href="#">
                                     <i class="fa-regular fa-paper-plane ml-2"></i>
                                 </Link>
                             </div>
