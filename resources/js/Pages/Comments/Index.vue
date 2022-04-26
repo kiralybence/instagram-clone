@@ -58,6 +58,43 @@ import { Link } from '@inertiajs/inertia-vue3';
             v-for="comment in post.comments.filter(comment => !comment.is_reply)"
             :comment="comment"
         />
+
+        <!-- Footer -->
+        <div class="flex justify-center items-center p-3 fixed bottom-0 w-full bg-black" style="border-top: 1px solid #474747;">
+            <!-- Auth user avatar -->
+            <img
+                :src="$page.props.user.profile_photo_url"
+                class="rounded-full mr-2"
+                style="width: 42px; height: 42px;"
+            >
+
+            <!-- Comment input -->
+            <input
+                type="text"
+                placeholder="Add a comment..."
+                class="bg-black rounded-full w-full pr-16"
+                style="border: 1px solid #474747;"
+                id="commentInput"
+                v-model="commentInput"
+                @focus="commentInputIsFocused = true"
+                @blur="commentInputIsFocused = false"
+                @keyup.enter="submitComment"
+            >
+
+            <!-- Submit button -->
+            <!-- FIXME: when clicking on the button, the input loses focus and the button disappears before the click event could register -->
+            <div
+                class="fixed cursor-pointer right-8 font-bold"
+                :class="{
+                    'text-blue-200': !commentIsSubmittable(),
+                    'text-blue-500': commentIsSubmittable(),
+                }"
+                v-if="commentInputIsFocused"
+                @click="submitComment"
+            >
+                Post
+            </div>
+        </div>
     </AppLayout>
 </template>
 
@@ -66,5 +103,40 @@ export default {
     props: {
         post: Object,
     },
+    data() {
+        return {
+            commentInput: '',
+            commentInputIsFocused: false,
+        };
+    },
+    methods: {
+        commentIsSubmittable() {
+            return this.commentInput.trim().length > 0;
+        },
+        submitComment() {
+            if (!this.commentIsSubmittable()) {
+                return;
+            }
+
+            // TODO: implement comment submission, leaving alert() here temporarily as a placeholder
+            alert(this.commentInput);
+
+            this.commentInput = '';
+            document.querySelector('#commentInput').blur();
+        },
+    },
 }
 </script>
+
+<style scoped>
+    #commentInput::placeholder {
+        color: #626262;
+    }
+</style>
+
+<style>
+    /* We must use padding in order to avoid hiding content beneath the fixed footer. */
+    main {
+        padding-bottom: 67px;
+    }
+</style>
