@@ -111,6 +111,7 @@ export default {
     },
     methods: {
         commentIsSubmittable() {
+            // TODO: add frontend validation, don't allow sending more than 2200 chars
             return this.commentInput.trim().length > 0;
         },
         submitComment() {
@@ -118,11 +119,23 @@ export default {
                 return;
             }
 
-            // TODO: implement comment submission, leaving alert() here temporarily as a placeholder
-            alert(this.commentInput);
+            let content = this.commentInput;
 
             this.commentInput = '';
             document.querySelector('#commentInput').blur();
+
+            axios.post(`/api/posts/${this.post.id}/comments`, {
+                content: content,
+            }).then(resp => {
+                // TODO: implement reply submission
+
+                // Add new comment to state (without refreshing everything)
+                this.post.comments.push(resp.data);
+
+                // Scroll to the bottom of the page (to automatically view the new comment)
+                // FIXME: it doesn't scroll to the absolute bototm (it only scrolls until the bottom padding)
+                document.body.scrollIntoView(false);
+            });
         },
     },
 }

@@ -27,6 +27,14 @@ Route::middleware([
         'as' => 'posts.',
     ], function () {
         Route::post('/{post}/like', 'like')->name('like');
+
+        Route::group([
+            'controller' => CommentController::class,
+            'prefix' => '{post}/comments',
+            'as' => 'comments.',
+        ], function () {
+            Route::post('/', 'store')->name('store');
+        });
     });
 
     Route::group([

@@ -15,6 +15,13 @@ class Comment extends Model
     use SoftDeletes;
     use Likeable;
 
+    protected $fillable = [
+        'content',
+        'parent_id',
+        'post_id',
+        'user_id',
+    ];
+
     protected $appends = [
         'created_at_ago',
         'created_at_ago_short',

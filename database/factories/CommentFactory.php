@@ -21,7 +21,7 @@ class CommentFactory extends Factory
     {
         return [
             'content' => $this->faker->words(rand(4, 12), true),
-            'parent_id' => NULL,
+            'parent_id' => null,
             'post_id' => Post::query()->inRandomOrder()->first()->id ?? Post::factory()->create()->id,
             'user_id' => User::query()->inRandomOrder()->first()->id ?? User::factory()->create()->id,
         ];
