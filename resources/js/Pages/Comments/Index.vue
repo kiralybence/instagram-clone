@@ -134,7 +134,7 @@ export default {
 
                 // Scroll to the bottom of the page (to automatically view the new comment)
                 // FIXME: it doesn't scroll to the absolute bottom (it only scrolls until the bottom padding)
-                document.body.scrollIntoView(false);
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
             });
         },
     },
