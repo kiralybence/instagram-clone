@@ -133,8 +133,13 @@ export default {
                 this.post.comments.push(resp.data);
 
                 // Scroll to the bottom of the page (to automatically view the new comment)
-                // FIXME: it doesn't scroll to the absolute bottom (it only scrolls until the bottom padding)
-                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                //
+                // For some reason, after .push() is done, the scrolling executes before the
+                // DOM could be re-rendered, therefore it will scroll to the wrong position.
+                // But wrapping it in a 0ms setTimeout() block solves this issue.
+                setTimeout(() => {
+                    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                }, 0);
             });
         },
     },
