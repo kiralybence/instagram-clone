@@ -46,7 +46,10 @@ import { Link } from '@inertiajs/inertia-vue3';
                         {{ comment.like_count }} {{ comment.like_count !== 1 ? 'likes' : 'like' }}
                     </span>
 
-                    <span class="mr-5">
+                    <span
+                        class="mr-5 cursor-pointer"
+                        @click="$emit('replyingTo', { comment_id: comment.id, username: comment.user.name })"
+                    >
                         Reply
                     </span>
                 </div>
