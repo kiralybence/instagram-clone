@@ -133,7 +133,7 @@ export default {
                 this.post.comments.push(resp.data);
 
                 // Scroll to the bottom of the page (to automatically view the new comment)
-                // FIXME: it doesn't scroll to the absolute bototm (it only scrolls until the bottom padding)
+                // FIXME: it doesn't scroll to the absolute bottom (it only scrolls until the bottom padding)
                 document.body.scrollIntoView(false);
             });
         },
