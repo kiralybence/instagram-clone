@@ -21,17 +21,11 @@ import { Link } from '@inertiajs/inertia-vue3';
 
             <!-- Center -->
             <div class="pl-3 w-full">
-                <b>{{ comment.user.name }}</b>
-
-                <span
-                    class="text-blue-100"
-                    v-if="comment.is_reply"
-                >
-                    <Link href="#">
-                        @{{ comment.parent.user.name }}
-                    </Link>
+                <span class="mr-1">
+                    <b>{{ comment.user.name }}</b>
                 </span>
 
+                <!-- TODO: highlight (and link) tagged users (color should be text-blue-100) -->
                 {{ comment.content }}
 
                 <div style="color: darkgray;">

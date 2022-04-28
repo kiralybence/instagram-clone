@@ -69,6 +69,7 @@ import { Link } from '@inertiajs/inertia-vue3';
                 </div>
 
                 <!-- TODO: it doesn't look like it's perfectly centered vertically -->
+                <!-- TODO: add more padding to make it easier to click -->
                 <div
                     class="cursor-pointer"
                     style="font-size: 0.8rem;"
@@ -87,7 +88,6 @@ import { Link } from '@inertiajs/inertia-vue3';
                 >
 
                 <!-- Comment input -->
-                <!-- TODO: whenever replying to a comment, automatically tag the user (and save it to the DB as well, instead of displaying it hardcoded) -->
                 <input
                     type="text"
                     placeholder="Add a comment..."
@@ -158,8 +158,12 @@ export default {
             this.replyingTo.username = username;
 
             if (this.isReplying) {
-                document.querySelector('#commentInput').focus();
+                this.commentInput = `@${this.replyingTo.username} `;
+            } else {
+                this.commentInput = '';
             }
+
+            document.querySelector('#commentInput').focus();
         },
         submitComment() {
             if (!this.commentIsSubmittable) {
@@ -174,11 +178,11 @@ export default {
             // Clear the input
             this.commentInput = '';
 
-            // Unfocus the input
-            document.querySelector('#commentInput').blur();
-
             // Reset "replying to" state
             this.setReplyingTo(null, null);
+
+            // Unfocus the input
+            document.querySelector('#commentInput').blur();
 
             axios.post(`/api/posts/${this.post.id}/comments`, {
                 content: content,
