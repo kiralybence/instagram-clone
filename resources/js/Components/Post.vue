@@ -8,11 +8,11 @@ import { Link } from '@inertiajs/inertia-vue3';
         <div class="flex justify-between p-3">
             <!-- Left -->
             <div class="flex">
-                <Link :href="post.user.profile_url">
+                <Link :href="route('profile', { user: post.user.name })">
                     <img :src="post.user.profile_photo_url" class="rounded-full" style="width: 30px; height: 30px;">
                 </Link>
 
-                <Link :href="post.user.profile_url">
+                <Link :href="route('profile', { user: post.user.name })">
                     <span class="ml-3">{{ post.user.name }}</span>
                 </Link>
             </div>
@@ -48,7 +48,7 @@ import { Link } from '@inertiajs/inertia-vue3';
                     <!-- TODO: use <Link> instead of $inertia.visit, temporary solution because of CSS -->
                     <i
                         class="fa-regular fa-comment mr-3 cursor-pointer"
-                        @click="$inertia.visit(`/posts/${post.id}/comments`)"
+                        @click="$inertia.visit(route('posts.comments.index', { post: post.id }))"
                     ></i>
 
                     <!-- Send -->
@@ -66,7 +66,7 @@ import { Link } from '@inertiajs/inertia-vue3';
             <div class="mt-3">
                 <b>{{ post.like_count }} {{ post.like_count !== 1 ? 'likes' : 'like' }}</b><br> <!-- TODO: maybe display "Be the first one to like" if there are 0 likes -->
 
-                <Link :href="post.user.profile_url">
+                <Link :href="route('profile', { user: post.user.name })">
                     <b>{{ post.user.name }}</b>
                 </Link>
 
@@ -86,7 +86,7 @@ export default {
     },
     methods: {
         async toggleLikeStatus() {
-            await axios.post(`/api/posts/${this.post.id}/like`, {
+            await axios.post(route('api.posts.like', { post: this.post.id }), {
                 status: !this.post.is_liked,
             }).then(() => {
                 this.post.is_liked = !this.post.is_liked;

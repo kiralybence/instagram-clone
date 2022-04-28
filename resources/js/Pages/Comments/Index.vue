@@ -184,7 +184,7 @@ export default {
             // Unfocus the input
             document.querySelector('#commentInput').blur();
 
-            axios.post(`/api/posts/${this.post.id}/comments`, {
+            axios.post(route('api.posts.comments.store', { post: this.post.id }), {
                 content: content,
                 parent_id: parent_id,
             }).then(resp => {

@@ -17,14 +17,14 @@ import { Link } from '@inertiajs/inertia-vue3';
             }"
         >
             <!-- Left -->
-            <Link :href="comment.user.profile_url">
+            <Link :href="route('profile', { user: comment.user.name })">
                 <img :src="comment.user.profile_photo_url" class="rounded-full" style="width: 30px; height: 30px;">
             </Link>
 
             <!-- Center -->
             <div class="pl-3 w-full">
                 <span class="mr-1">
-                    <Link :href="comment.user.profile_url">
+                    <Link :href="route('profile', { user: comment.user.name })">
                         <b>{{ comment.user.name }}</b>
                     </Link>
                 </span>
@@ -137,7 +137,7 @@ export default {
     },
     methods: {
         async toggleLikeStatus() {
-            await axios.post(`/api/comments/${this.comment.id}/like`, {
+            await axios.post(route('api.comments.like', { comment: this.comment.id }), {
                 status: !this.comment.is_liked,
             }).then(() => {
                 this.comment.is_liked = !this.comment.is_liked;
@@ -156,14 +156,14 @@ export default {
                     if (word.charAt(0) === '@') {
                         let username = word.slice(1);
 
-                        word = this.highlightWord(`/profile/${username}`, word);
+                        word = this.highlightWord(route('profile', { user: username }), word);
                     }
 
                     // Highlight hashtags
                     if (word.charAt(0) === '#') {
                         let hashtag = word.slice(1);
 
-                        word = this.highlightWord(`/hashtag/${hashtag}`, word);
+                        word = this.highlightWord(route('hashtag', { hashtag: hashtag }), word);
                     }
 
                     return word;
