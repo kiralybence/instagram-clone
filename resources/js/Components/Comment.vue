@@ -29,7 +29,7 @@ import { Link } from '@inertiajs/inertia-vue3';
                     </Link>
                 </span>
 
-                <span class="comment-content-container">
+                <span :id="`comment-content-container-${comment.id}`">
                     {{ comment.content }}
                 </span>
 
@@ -127,9 +127,8 @@ export default {
     props: {
         comment: Object,
     },
-    updated() {
-        // TODO: this doesn't trigger when the user submits a new comment
-        this.formatAllComments();
+    mounted() {
+        this.formatComment();
     },
     data() {
         return {
@@ -145,42 +144,34 @@ export default {
                 this.comment.like_count += this.comment.is_liked ? 1 : -1;
             });
         },
-        formatAllComments() {
-            document.querySelectorAll('.comment-content-container')
-                .forEach(container => {
-                    container.innerHTML = this.formatComment(container.innerHTML);
-                });
+        formatComment() {
+            let container = document.querySelector(`#comment-content-container-${this.comment.id}`);
+
+            container.innerHTML = container.innerHTML
+                .split(' ')
+                .map(word => {
+                    // I cannot use <Link>, because it doesn't get rendered if the DOM is being updated manually
+
+                    // Highlight tagged users
+                    if (word.charAt(0) === '@') {
+                        let username = word.slice(1);
+
+                        word = this.highlightWord(`/profile/${username}`, word);
+                    }
+
+                    // Highlight hashtags
+                    if (word.charAt(0) === '#') {
+                        let hashtag = word.slice(1);
+
+                        word = this.highlightWord(`/hashtag/${hashtag}`, word);
+                    }
+
+                    return word;
+                })
+                .join(' ');
         },
-        /**
-         * Highlight tagged users and hashtags
-         *
-         * @param {string} content The text to be formatted
-         * @returns {string} The formatted text
-         */
-        formatComment(content) {
-            let words = content.split(' ');
-
-            words = words.map(word => {
-                // I cannot use <Link>, because it doesn't get rendered if the DOM is being updated manually
-
-                if (word.charAt(0) === '@') {
-                    let username = word.slice(1);
-
-                    word = `<a href="/profile/${username}" class="text-blue-100">${word}</a>`;
-                }
-
-                if (word.charAt(0) === '#') {
-                    let hashtag = word.slice(1);
-
-                    word = `<a href="/hashtag/${hashtag}" class="text-blue-100">${word}</a>`;
-                }
-
-                return word;
-            });
-
-            content = words.join(' ');
-
-            return content;
+        highlightWord(url, word) {
+            return `<a href="${url}" class="text-blue-100">${word}</a>`
         },
     },
 }
