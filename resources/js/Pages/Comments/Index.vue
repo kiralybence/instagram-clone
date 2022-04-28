@@ -78,7 +78,7 @@ import { Link } from '@inertiajs/inertia-vue3';
                 </div>
             </div>
 
-            <div class="flex justify-center items-center p-3" :style="{'border-top': !isReplying ? '1px solid #474747' : '0'}">
+            <div class="flex justify-center items-center p-3" :style="{ 'border-top': !isReplying ? '1px solid #474747' : '0' }">
                 <!-- Auth user avatar -->
                 <img
                     :src="$page.props.user.profile_photo_url"
