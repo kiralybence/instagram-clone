@@ -17,14 +17,16 @@ import { Link } from '@inertiajs/inertia-vue3';
             }"
         >
             <!-- Left -->
-            <!-- TODO: link to profile -->
-            <img :src="comment.user.profile_photo_url" class="rounded-full" style="width: 30px; height: 30px;">
+            <Link :href="comment.user.profile_url">
+                <img :src="comment.user.profile_photo_url" class="rounded-full" style="width: 30px; height: 30px;">
+            </Link>
 
             <!-- Center -->
             <div class="pl-3 w-full">
-                <!-- TODO: link to profile -->
                 <span class="mr-1">
-                    <b>{{ comment.user.name }}</b>
+                    <Link :href="comment.user.profile_url">
+                        <b>{{ comment.user.name }}</b>
+                    </Link>
                 </span>
 
                 <span class="comment-content-container">
@@ -162,7 +164,9 @@ export default {
                 // I cannot use <Link>, because it doesn't get rendered if the DOM is being updated manually
 
                 if (word.charAt(0) === '@') {
-                    word = `<a href="#" class="text-blue-100">${word}</a>`;
+                    let username = word.slice(1);
+
+                    word = `<a href="/profile/${username}" class="text-blue-100">${word}</a>`;
                 }
 
                 // TODO: do the same with hashtags

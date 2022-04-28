@@ -59,6 +59,7 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'profile_url',
     ];
 
     public function posts(): HasMany
@@ -74,5 +75,10 @@ class User extends Authenticatable
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function getProfileUrlAttribute(): string
+    {
+        return route('profile', ['user' => $this->name]);
     }
 }
