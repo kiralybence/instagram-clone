@@ -97,7 +97,7 @@ import { Link } from '@inertiajs/inertia-vue3';
                     v-model="commentInput"
                     @focus="commentInputIsFocused = true"
                     @blur="commentInputIsFocused = false"
-                    @keyup.enter="submitComment"
+                    @keydown.enter="submitComment"
                 >
 
                 <!-- Submit button -->
