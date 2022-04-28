@@ -1,11 +1,20 @@
+<script setup>
+import { Link } from '@inertiajs/inertia-vue3';
+</script>
+
 <template>
     <div class="mb-3">
         <!-- Uploader -->
         <div class="flex justify-between p-3">
             <!-- Left -->
             <div class="flex">
-                <img :src="post.user.profile_photo_url" class="rounded-full" style="width: 30px; height: 30px;">
-                <span class="ml-3">{{ post.user.name }}</span>
+                <Link :href="post.user.profile_url">
+                    <img :src="post.user.profile_photo_url" class="rounded-full" style="width: 30px; height: 30px;">
+                </Link>
+
+                <Link :href="post.user.profile_url">
+                    <span class="ml-3">{{ post.user.name }}</span>
+                </Link>
             </div>
 
             <!-- Right -->
@@ -56,7 +65,13 @@
             <!-- Info -->
             <div class="mt-3">
                 <b>{{ post.like_count }} {{ post.like_count !== 1 ? 'likes' : 'like' }}</b><br> <!-- TODO: maybe display "Be the first one to like" if there are 0 likes -->
-                <b>{{ post.user.name }}</b> {{ post.description }}<br>
+
+                <Link :href="post.user.profile_url">
+                    <b>{{ post.user.name }}</b>
+                </Link>
+
+                {{ post.description }}<br>
+
                 <span style="color: darkgray;">{{ post.created_at_ago }}</span>
             </div>
         </div>
