@@ -169,7 +169,11 @@ export default {
                     word = `<a href="/profile/${username}" class="text-blue-100">${word}</a>`;
                 }
 
-                // TODO: do the same with hashtags
+                if (word.charAt(0) === '#') {
+                    let hashtag = word.slice(1);
+
+                    word = `<a href="/hashtag/${hashtag}" class="text-blue-100">${word}</a>`;
+                }
 
                 return word;
             });
