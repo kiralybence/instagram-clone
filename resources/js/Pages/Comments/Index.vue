@@ -10,8 +10,8 @@ import { Link } from '@inertiajs/inertia-vue3';
         <div class="flex justify-between items-center px-3" style="height: 50px;">
             <!-- Left -->
             <div style="font-size: 1.5rem;">
-                <!-- TODO: make route().back() working -->
-                <Link href="#">
+                <!-- TODO: redirect back instead of going to the homepage -->
+                <Link :href="route('home')">
                     <i class="fa-solid fa-angle-left"></i>
                 </Link>
             </div>
