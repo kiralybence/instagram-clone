@@ -156,6 +156,10 @@ export default {
         setReplyingTo(comment_id, username) {
             this.replyingTo.comment_id = comment_id;
             this.replyingTo.username = username;
+
+            if (this.isReplying) {
+                document.querySelector('#commentInput').focus();
+            }
         },
         submitComment() {
             if (!this.commentIsSubmittable) {
