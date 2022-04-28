@@ -25,7 +25,7 @@ const logout = () => {
         <div class="min-h-screen bg-black text-white">
             <nav v-if="displayNavbar">
                 <!-- Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="px-4">
                     <div class="flex justify-between h-16">
                         <!-- Left -->
                         <div class="flex">
