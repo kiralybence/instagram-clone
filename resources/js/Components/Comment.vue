@@ -17,16 +17,19 @@ import { Link } from '@inertiajs/inertia-vue3';
             }"
         >
             <!-- Left -->
+            <!-- TODO: link to profile -->
             <img :src="comment.user.profile_photo_url" class="rounded-full" style="width: 30px; height: 30px;">
 
             <!-- Center -->
             <div class="pl-3 w-full">
+                <!-- TODO: link to profile -->
                 <span class="mr-1">
                     <b>{{ comment.user.name }}</b>
                 </span>
 
-                <!-- TODO: highlight (and link) tagged users (color should be text-blue-100) -->
-                {{ comment.content }}
+                <span class="comment-content-container">
+                    {{ comment.content }}
+                </span>
 
                 <div style="color: darkgray;">
                     <span class="mr-5">
@@ -122,6 +125,10 @@ export default {
     props: {
         comment: Object,
     },
+    updated() {
+        // TODO: this doesn't trigger when the user submits a new comment
+        this.formatAllComments();
+    },
     data() {
         return {
             showReplies: false,
@@ -135,6 +142,37 @@ export default {
                 this.comment.is_liked = !this.comment.is_liked;
                 this.comment.like_count += this.comment.is_liked ? 1 : -1;
             });
+        },
+        formatAllComments() {
+            document.querySelectorAll('.comment-content-container')
+                .forEach(container => {
+                    container.innerHTML = this.formatComment(container.innerHTML);
+                });
+        },
+        /**
+         * Highlight tagged users and hashtags
+         *
+         * @param {string} content The text to be formatted
+         * @returns {string} The formatted text
+         */
+        formatComment(content) {
+            let words = content.split(' ');
+
+            words = words.map(word => {
+                // I cannot use <Link>, because it doesn't get rendered if the DOM is being updated manually
+
+                if (word.charAt(0) === '@') {
+                    word = `<a href="#" class="text-blue-100">${word}</a>`;
+                }
+
+                // TODO: do the same with hashtags
+
+                return word;
+            });
+
+            content = words.join(' ');
+
+            return content;
         },
     },
 }
