@@ -123,7 +123,7 @@ import { Link } from '@inertiajs/inertia-vue3';
 
 <script>
 export default {
-    name: "Comment",
+    name: 'Comment',
     props: {
         comment: Object,
     },

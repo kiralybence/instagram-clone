@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from '../../Layouts/AppLayout.vue';
-import Comment from "../../Components/Comment";
+import Comment from '../../Components/Comment';
 import { Link } from '@inertiajs/inertia-vue3';
 </script>
 

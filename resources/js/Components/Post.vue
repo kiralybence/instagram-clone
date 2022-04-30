@@ -80,7 +80,7 @@ import { Link } from '@inertiajs/inertia-vue3';
 
 <script>
 export default {
-    name: "Post",
+    name: 'Post',
     props: {
         post: Object,
     },

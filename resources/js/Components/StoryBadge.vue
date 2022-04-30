@@ -20,7 +20,7 @@
 
 <script>
 export default {
-    name: "StoryBadge",
+    name: 'StoryBadge',
     props: {
         // story: Object,
     },
