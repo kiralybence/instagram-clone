@@ -2,6 +2,7 @@
 import AppLayout from '../../Layouts/AppLayout.vue';
 import Comment from '../../Components/Comment';
 import { Link } from '@inertiajs/inertia-vue3';
+import Separator from '../../Components/Separator';
 </script>
 
 <template>
@@ -30,7 +31,7 @@ import { Link } from '@inertiajs/inertia-vue3';
             </div>
         </div>
 
-        <hr style="border-top: 1px solid #474747;">
+        <Separator />
 
         <!-- Post description -->
         <div class="flex p-3">
@@ -51,7 +52,7 @@ import { Link } from '@inertiajs/inertia-vue3';
             </div>
         </div>
 
-        <hr style="border-top: 1px solid #474747;">
+        <Separator />
 
         <!-- Comments -->
         <Comment

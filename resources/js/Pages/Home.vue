@@ -2,6 +2,7 @@
 import AppLayout from '../Layouts/AppLayout.vue';
 import Post from '../Components/Post';
 import StoryBadge from '../Components/StoryBadge';
+import Separator from '../Components/Separator';
 </script>
 
 <template>
@@ -13,7 +14,7 @@ import StoryBadge from '../Components/StoryBadge';
             <StoryBadge />
         </div>
 
-        <hr style="border-top: 1px solid #474747;">
+        <Separator />
 
         <!-- Posts -->
         <Post v-for="post in posts" :post="post" />
