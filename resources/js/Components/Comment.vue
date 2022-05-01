@@ -18,6 +18,7 @@ import { Link } from '@inertiajs/inertia-vue3';
         >
             <!-- Left -->
             <Link :href="route('profile', { user: comment.user.name })">
+                <!-- FIXME: why is the top and bottom of the avatar being cut off? -->
                 <img :src="comment.user.profile_photo_url" class="rounded-full" style="width: 30px; height: 30px;">
             </Link>
 
