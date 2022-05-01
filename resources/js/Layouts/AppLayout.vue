@@ -2,10 +2,15 @@
 import { Inertia } from '@inertiajs/inertia';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import JetBanner from '@/Jetstream/Banner.vue';
+import FooterMenu from '../Components/FooterMenu';
 
 defineProps({
     title: String,
     displayNavbar: {
+        type: Boolean,
+        default: true,
+    },
+    displayFooter: {
         type: Boolean,
         default: true,
     },
@@ -22,7 +27,12 @@ const logout = () => {
 
         <JetBanner />
 
-        <div class="min-h-screen bg-black text-white">
+        <div
+            class="min-h-screen bg-black text-white"
+            :style="{
+                'padding-bottom': displayFooter ? '48px' : 'initial',
+            }"
+        >
             <nav v-if="displayNavbar">
                 <!-- Navigation Menu -->
                 <div class="px-4">
@@ -68,5 +78,7 @@ const logout = () => {
                 <slot />
             </main>
         </div>
+
+        <FooterMenu v-if="displayFooter"></FooterMenu>
     </div>
 </template>

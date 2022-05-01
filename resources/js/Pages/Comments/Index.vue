@@ -6,7 +6,7 @@ import Separator from '../../Components/Separator';
 </script>
 
 <template>
-    <AppLayout title="Comments" :display-navbar="false">
+    <AppLayout title="Comments" :display-navbar="false" :display-footer="false">
         <!-- Header -->
         <div class="flex justify-between items-center px-3" style="height: 50px;">
             <!-- Left -->
