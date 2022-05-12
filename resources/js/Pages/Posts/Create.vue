@@ -37,7 +37,7 @@ import Separator from '../../Components/Separator';
         <!-- TODO: refactor - parent container should have the 100px height and the child divs should fill up the available height -->
         <div class="flex items-center p-3">
             <div
-                class="flex items-center justify-center mr-3"
+                class="mr-3"
                 style="
                     width: 100px;
                     height: 100px;
