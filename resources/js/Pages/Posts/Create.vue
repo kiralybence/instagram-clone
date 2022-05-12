@@ -35,6 +35,7 @@ import Separator from '../../Components/Separator';
         <Separator />
 
         <!-- TODO: refactor - parent container should have the 100px height and the child divs should fill up the available height -->
+        <!-- TODO: either use background-size: cover; or use <img> instead (to avoid click event triggering on empty space) -->
         <div class="flex items-center p-3">
             <div
                 class="mr-3"
