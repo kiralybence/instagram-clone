@@ -14,7 +14,7 @@ import FooterMenuIcon from './FooterMenuIcon';
             <i class="fa-solid fa-magnifying-glass"></i>
         </FooterMenuIcon>
 
-        <FooterMenuIcon href="#">
+        <FooterMenuIcon :href="route('posts.create')">
             <i class="fa-solid fa-plus"></i>
         </FooterMenuIcon>
 
