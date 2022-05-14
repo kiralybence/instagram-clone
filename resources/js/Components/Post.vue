@@ -25,7 +25,7 @@ import { Link } from '@inertiajs/inertia-vue3';
 
         <!-- Image -->
         <div class="w-full">
-            <img :src="post.image.url" class="w-full" @dblclick="toggleLikeStatus">
+            <img :src="route('images.show', { image: post.image.filename })" class="w-full" @dblclick="toggleLikeStatus">
         </div>
 
         <!-- Below image -->
