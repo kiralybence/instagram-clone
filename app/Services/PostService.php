@@ -2,25 +2,27 @@
 
 namespace App\Services;
 
-use App\Models\Image;
 use App\Models\Post;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class PostService
 {
+    public function __construct(
+        private ImageService $imageService
+    ) {
+        //
+    }
+
     /**
      * Create a post.
      *
      * @param UploadedFile $image
-     * @param string $caption
+     * @param string|null $caption
      * @return void
      */
-    public function createPost(UploadedFile $image, string $caption)
+    public function createPost(UploadedFile $image, ?string $caption): void
     {
-        // TODO: use Intervention to compress image (to 1080px width) before saving
-
         // TODO: refactor "description" to "caption" everywhere
         DB::transaction(function () use ($image, $caption) {
             $post = Post::query()->create([
@@ -32,9 +34,8 @@ class PostService
                 'filename' => $image->hashName(),
             ]);
 
-            // TODO: access images through ImageController::show() by its filename
-
-            $image->storeAs('images' . DIRECTORY_SEPARATOR . $post->image->id, $image->hashName());
+            $image->storeAs('images' . DIRECTORY_SEPARATOR . $post->image->id, $post->image->filename);
+            $this->imageService->compressImage($post->image);
         });
     }
 

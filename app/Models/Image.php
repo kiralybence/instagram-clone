@@ -18,4 +18,19 @@ class Image extends Model
     {
         return $this->morphTo();
     }
+
+    /**
+     * Return the file's absolute path.
+     *
+     * @return string
+     */
+    public function getFilePath(): string
+    {
+        return storage_path(
+            'app' . DIRECTORY_SEPARATOR
+            . 'images' . DIRECTORY_SEPARATOR
+            . $this->id . DIRECTORY_SEPARATOR
+            . $this->filename
+        );
+    }
 }

@@ -11,13 +11,6 @@ class ImageController extends Controller
     {
         // TODO: only allow viewing the image, if it belongs to a post that is accessible by the user
 
-        return response()->file(
-            storage_path(
-                'app' . DIRECTORY_SEPARATOR
-                . 'images' . DIRECTORY_SEPARATOR
-                . $image->id . DIRECTORY_SEPARATOR
-                . $image->filename
-            )
-        );
+        return response()->file($image->getFilePath());
     }
 }
