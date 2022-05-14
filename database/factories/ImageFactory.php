@@ -17,8 +17,10 @@ class ImageFactory extends Factory
      */
     public function definition()
     {
+        // TODO: create file on the disk (maybe even download image from https://via.placeholder.com/800x800)
+
         return [
-            'url' => 'https://via.placeholder.com/800x800',
+            'filename' => 'image.jpg',
             'imageable_type' => Post::class,
             'imageable_id' => Post::query()->inRandomOrder()->first()->id,
         ];

@@ -16,6 +16,11 @@ class Post extends Model
     use SoftDeletes;
     use Likeable;
 
+    protected $fillable = [
+        'description',
+        'user_id',
+    ];
+
     protected $appends = [
         'created_at_ago',
         'created_at_ago_short',
