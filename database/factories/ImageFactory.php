@@ -20,7 +20,7 @@ class ImageFactory extends Factory
     public function definition()
     {
         return [
-            'filename' => 'image.png',
+            'filename' => microtime() . '.png',
             'imageable_type' => Post::class,
             'imageable_id' => Post::query()->inRandomOrder()->first()->id,
         ];
@@ -38,7 +38,7 @@ class ImageFactory extends Factory
         })->afterCreating(function (Image $image) {
             Storage::copy(
                 'placeholders' . DIRECTORY_SEPARATOR . '1080x1080.png',
-                'images' . DIRECTORY_SEPARATOR . $image->id . DIRECTORY_SEPARATOR . 'image.png',
+                'images' . DIRECTORY_SEPARATOR . $image->id . DIRECTORY_SEPARATOR . $image->filename,
             );
         });
     }
