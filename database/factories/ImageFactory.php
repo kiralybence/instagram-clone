@@ -19,8 +19,6 @@ class ImageFactory extends Factory
      */
     public function definition()
     {
-        // TODO: create file on the disk (save a test image locally, and copy that)
-
         return [
             'filename' => 'image.png',
             'imageable_type' => Post::class,
