@@ -34,36 +34,59 @@ import Separator from '../../Components/Separator';
 
         <Separator />
 
-        <div class="flex items-center p-3">
-            <div
-                class="flex items-center justify-center mr-3"
-                style="width: 100px; height: 100px;"
-            >
-                <img
-                    src="https://via.placeholder.com/500x800"
-                    class="max-w-full max-h-full"
-                >
-            </div>
-
-            <div
-                class="w-full"
-                style="height: 100px;"
-            >
-                <textarea
-                    id="captionInput"
-                    class="w-full h-full bg-black text-white border-0 resize-none outline-0"
-                    placeholder="Write a caption..."
-                ></textarea>
-            </div>
+        <!-- TODO: align center -->
+        <div
+            v-if="!imagePreviewUrl"
+            class="flex items-center justify-center"
+        >
+            <input type="file" @change="onImageSelect">
         </div>
 
-        <Separator />
+        <div v-if="imagePreviewUrl">
+            <div class="flex items-center p-3">
+                <div
+                    class="flex items-center justify-center mr-3"
+                    style="width: 100px; height: 100px;"
+                >
+                    <img
+                        :src="imagePreviewUrl"
+                        class="max-w-full max-h-full"
+                    >
+                </div>
+
+                <div
+                    class="w-full"
+                    style="height: 100px;"
+                >
+                    <textarea
+                        id="captionInput"
+                        class="w-full h-full bg-black text-white border-0 resize-none outline-0"
+                        placeholder="Write a caption..."
+                    ></textarea>
+                </div>
+            </div>
+
+            <Separator />
+        </div>
     </AppLayout>
 </template>
 
 <script>
 export default {
-    //
+    data() {
+        return {
+            imagePreviewUrl: null,
+        };
+    },
+    methods: {
+        onImageSelect(event) {
+            if (!event.target.files) {
+                return;
+            }
+
+            this.imagePreviewUrl = URL.createObjectURL(event.target.files[0]);
+        },
+    },
 }
 </script>
 
