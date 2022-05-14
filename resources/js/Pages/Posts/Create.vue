@@ -23,12 +23,17 @@ import Separator from '../../Components/Separator';
 
             <!-- Right -->
             <div class="flex items-center">
-                <!-- Send in DMs -->
-                <Link href="#">
-                    <span class="text-blue-500">
-                        <b>Share</b>
-                    </span>
-                </Link>
+                <!-- Submit post -->
+                <span
+                    class="cursor-pointer"
+                    :class="{
+                        'text-blue-200': !postIsSubmittable,
+                        'text-blue-500': postIsSubmittable,
+                    }"
+                    @click="submitPost"
+                >
+                    <b>Share</b>
+                </span>
             </div>
         </div>
 
@@ -48,9 +53,10 @@ import Separator from '../../Components/Separator';
                     class="flex items-center justify-center mr-3"
                     style="width: 100px; height: 100px;"
                 >
+                    <!-- TODO: big preview on click -->
                     <img
                         :src="imagePreviewUrl"
-                        class="max-w-full max-h-full"
+                        class="max-w-full max-h-full cursor-pointer"
                     >
                 </div>
 
@@ -62,6 +68,8 @@ import Separator from '../../Components/Separator';
                         id="captionInput"
                         class="w-full h-full bg-black text-white border-0 resize-none outline-0"
                         placeholder="Write a caption..."
+                        maxlength="2200"
+                        v-model="caption"
                     ></textarea>
                 </div>
             </div>
@@ -73,9 +81,18 @@ import Separator from '../../Components/Separator';
 
 <script>
 export default {
+    computed: {
+        postIsSubmittable() {
+            // TODO: add frontend validation
+            return !!this.selectedImage && !this.postIsSubmitting && this.caption.length <= 2200;
+        },
+    },
     data() {
         return {
+            selectedImage: null,
             imagePreviewUrl: null,
+            caption: '',
+            postIsSubmitting: false,
         };
     },
     methods: {
@@ -84,7 +101,27 @@ export default {
                 return;
             }
 
-            this.imagePreviewUrl = URL.createObjectURL(event.target.files[0]);
+            this.selectedImage = event.target.files[0];
+            this.imagePreviewUrl = URL.createObjectURL(this.selectedImage);
+        },
+        submitPost() {
+            if (!this.postIsSubmittable) {
+                return;
+            }
+
+            this.postIsSubmitting = true;
+
+            let formData = new FormData();
+            formData.append('image', this.selectedImage);
+            formData.append('description', this.caption);
+
+            axios.post(route('api.posts.store'), formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            }).then(() => {
+                this.$inertia.visit(route('home'));
+            });
         },
     },
 }

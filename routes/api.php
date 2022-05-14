@@ -26,6 +26,7 @@ Route::middleware([
         'prefix' => 'posts',
         'as' => 'posts.',
     ], function () {
+        Route::post('/', 'store')->name('store');
         Route::post('/{post}/like', 'like')->name('like');
 
         Route::group([
