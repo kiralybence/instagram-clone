@@ -34,20 +34,16 @@ import Separator from '../../Components/Separator';
 
         <Separator />
 
-        <!-- TODO: refactor - parent container should have the 100px height and the child divs should fill up the available height -->
-        <!-- TODO: either use background-size: cover; or use <img> instead (to avoid click event triggering on empty space) -->
         <div class="flex items-center p-3">
             <div
-                class="mr-3"
-                style="
-                    width: 100px;
-                    height: 100px;
-                    background-image: url('https://via.placeholder.com/500x800');
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                "
-            ></div>
+                class="flex items-center justify-center mr-3"
+                style="width: 100px; height: 100px;"
+            >
+                <img
+                    src="https://via.placeholder.com/500x800"
+                    class="max-w-full max-h-full"
+                >
+            </div>
 
             <div
                 class="w-full"
@@ -60,8 +56,6 @@ import Separator from '../../Components/Separator';
         </div>
 
         <Separator />
-
-        test
     </AppLayout>
 </template>
 
