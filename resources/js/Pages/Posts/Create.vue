@@ -50,7 +50,9 @@ import Separator from '../../Components/Separator';
                 style="height: 100px;"
             >
                 <textarea
-                    class="w-full h-full"
+                    id="captionInput"
+                    class="w-full h-full bg-black text-white border-0 resize-none outline-0"
+                    placeholder="Write a caption..."
                 ></textarea>
             </div>
         </div>
@@ -64,3 +66,9 @@ export default {
     //
 }
 </script>
+
+<style scoped>
+    #captionInput::placeholder {
+        color: #919191;
+    }
+</style>
