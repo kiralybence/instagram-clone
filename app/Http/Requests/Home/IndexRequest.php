@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Hashtag;
+namespace App\Http\Requests\Home;
 
 use Illuminate\Foundation\Http\FormRequest;
 
